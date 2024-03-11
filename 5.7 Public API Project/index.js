@@ -5,7 +5,7 @@ const app = express();
 const port = 3000;
 
 const exclude = "minutly,hourly,daily,alerts";
-const ApiKey = "822ee4c59ba3b779789e777ddd31e691";
+const ApiKey = "877d8f5c9a2b5e3b8d609a3ff3b6f42f";
 
 const latKlagenfurt = 46.639468;
 const lonKlagenfurt = 14.305363;
@@ -16,14 +16,15 @@ app.use(express.static("public"));
 
 app.get("/",async(req,res)=>{
     try{
-        const data = await axios.get(`https://api.openweathermap.org/data/3.0/onecall?lat=${latKlagenfurt}&lon=${lonKlagenfurt}&exclude=${exclude}&appid=${ApiKey}`);
-        let tempKlagenfurt = data.current.temp;
-        console.log(tempKlagenfurt);
+        const data = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latKlagenfurt}&lon=${lonKlagenfurt}&appid=${ApiKey}`);
+        data = JSON.parse(data);
+        let tempKlagenfurt = data.cord.lon;
         res.render("index.ejs",{
             tempKlagenfurt: tempKlagenfurt
         })
     } catch (error) {
-        res.status(404).send(error.message);
+        
+        res.send(error.message);
     }
 
 })
