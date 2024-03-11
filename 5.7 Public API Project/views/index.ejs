@@ -4,20 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
+    <div class="container">
+    <div>
+        <h1>Wetter Klagenfurt </h1>
+        <h2><%= tempKl %></h2>
+        <h2><%= weatherKl %></h2>
+    </div>
 
-    <h1>Wetter Klagenfurt </h1>
-    <h2><%= tempKl %></h2>
-    <h2><%= weatherKl %></h2>
+    <div>
+        <h1>Wetter Zürich </h1>
+        <h2><%= tempZü %></h2>
+        <h2><%= weatherZü %></h2>
+    </div>
 
-    <h1>Wetter Zürich </h1>
-    <h2><%= tempZü %></h2>
-    <h2><%= weatherZü %></h2>
-
+    <div>    
     <h1>Wetter Zambratija </h1>
     <h2><%= tempZa %></h2>
     <h2><%= weatherZa %></h2>
+    </div>
     
+    </div>  
 </body>
 </html>
