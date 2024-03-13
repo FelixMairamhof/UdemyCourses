@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/random",(req,res)=>{
   const random = Math.floor(Math.random() * jokes.length);
   res.json(jokes[random]);
-})
+});
 
 //2. GET a specific joke
 app.get("/jokes/:id",(req,res)=>{
@@ -64,8 +64,34 @@ app.patch("/jokes/:id",(req,res)=>{
   res.json(replacementJoke);
 });
 //7. DELETE Specific joke
+app.patch("/jokes/:id",(req,res)=>{
+  const id = parseInt(req.params.id);
+  const searchIndex = jokes.find((joke) => joke.id ===id);
+  if(searchIndex > -1){
+    jokes.splice(searchIndex, 1);
+    res.sendStatus(200);
+  }else{
+    res
+      .status(404)
+      .json({
+        error: `Joke with id: ${id} not found.
+        No jokes  were deleted.`
+      })
+  }
+});
 
 //8. DELETE All jokes
+app.delete("/all",(req,res)=>{
+  const userKey = req.query.key;
+  if(userKey === masterKey){
+    jokes = [];
+    res.sendStatus(200);
+  }else{
+    res 
+      .status(404)
+      .json({error: `You are not authorized to perform this action.`});
+  }
+});
 
 app.listen(port, () => {
   console.log(`Successfully started server on port ${port}.`);
