@@ -49,31 +49,57 @@ app.get("/posts", (req,res)=>{
 app.get("/posts/:id",(req,res)=>{
   try{
     const postId = parseInt(req.params.id);
-    res.json(posts[postId])
+    res.json(posts[postId-1])
   }
   catch{
-    res.json({error: `Joke with id: ${id} not found.`});
+    res.json({error: `Blog with id: ${postId} not found.`});
   }
   
 });
 
 //CHALLENGE 3: POST{} a new post
 app.post("/posts",(req,res)=>{
-  lastId+=1;
-  const newPosts = {
-    id: lastId,
-    title: req.body.title,
-    content: req.body.content,
-    author: req.body.author,
-    date: new Date()
-  };
-  posts.push(newPosts);
-  res.json(newPosts);
-  
+  try{
+    lastId+=1;
+    const newPosts = {
+      id: lastId,
+      title: req.body.title,
+      content: req.body.content,
+      author: req.body.author,
+      date: new Date()
+    };
+    posts.push(newPosts);
+    res.json(newPosts);
+    
+  }catch{
+    res.json({error: `Could not create Post`});
+  }
+
 });
 //CHALLENGE 4: PATCH a post when you just want to update one parameter
+app.patch("/posts/:id",(req,res)=>{
+  const post = posts.find((p) => p.id === parseInt(req.params.id));
+  if (!post) return res.status(404).json({ message: "Post not found" });
+
+  if (req.body.title) post.title = req.body.title;
+  if (req.body.content) post.content = req.body.content;
+  if (req.body.author) post.author = req.body.author;
+
+  res.json(post);
+  
+});
 
 //CHALLENGE 5: DELETE a specific post by providing the post id.
+app.delete("/posts/:id",(req,res)=>{
+  try{
+    const postId = parseInt(req.params.id);
+    posts.splice(postId - 1,1);
+    res.json({message:  `Blog with id: ${postId} deleted`});
+  }
+  catch{
+    res.json({error: `Blog with id: ${postId} not found. Could not delete`});
+  }
+});
 
 app.listen(port, () => {
   console.log(`API is running at http://localhost:${port}`);
