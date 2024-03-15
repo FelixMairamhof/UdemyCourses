@@ -41,10 +41,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //Write your code here//
 
 //CHALLENGE 1: GET All posts
+app.get("/posts", (req,res)=>{
+  res.json(posts);
+});
 
 //CHALLENGE 2: GET a specific post by id
+app.get("/posts/:id",(req,res)=>{
+  try{
+    const postId = parseInt(req.params.id);
+    res.json(posts[postId])
+  }
+  catch{
+    res.json({error: `Joke with id: ${id} not found.`});
+  }
+  
+});
 
-//CHALLENGE 3: POST a new post
+//CHALLENGE 3: POST{} a new post
 
 //CHALLENGE 4: PATCH a post when you just want to update one parameter
 
