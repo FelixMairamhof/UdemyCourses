@@ -23,6 +23,12 @@ app.get("/",async(req,res)=>{
         data: data.rows,
     });
 });
+app.post("/edit",(req,res)=>{
+
+});
+app.get("/edit",(req,res)=>{
+    res.render("edit.ejs");
+});
 
 app.post("/delete",async(req,res)=>{
     const deleteId = req.body.deleteItemId;
