@@ -24,6 +24,12 @@ app.get("/",async(req,res)=>{
     });
 });
 
+app.post("/delete",async(req,res)=>{
+    const deleteId = req.body.deleteItemId;
+    await db.query("DELETE FROM bookreview WHERE id = $1",[deleteId]);
+    res.redirect("/");
+});
+
 app.get("/create",(req,res)=>{
     res.render("create.ejs");
 });
@@ -33,7 +39,7 @@ app.post("/create", async (req,res)=>{
     const rating = req.body.rating;
     const time = req.body.time;
 
-    await db.query("INSERT INTO bookreview (title,describtion,author) VALUES ($1,$2,$3)",[title,describtion,author]);
+    await db.query("INSERT INTO bookreview (title,describtion,rating,time) VALUES ($1,$2,$3,$4)",[title,describtion,rating,time]);
 
     res.redirect("/");
 });
