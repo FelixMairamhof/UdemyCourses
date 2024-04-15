@@ -29,8 +29,9 @@ app.get("/create",(req,res)=>{
 });
 app.post("/create", async (req,res)=>{
     const title = req.body.title;
-    const describtion = req.body.text;
-    const author = req.body.author;
+    const describtion = req.body.describtion;
+    const rating = req.body.rating;
+    const time = req.body.time;
 
     await db.query("INSERT INTO bookreview (title,describtion,author) VALUES ($1,$2,$3)",[title,describtion,author]);
 
