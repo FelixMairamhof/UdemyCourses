@@ -4,14 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit</title>
+    <link rel="stylesheet" href="style/styles.css">
+
 </head>
 <body>
-    <form action="/edit" method="POST">
-        <input type="text" name="title" placeholder="title" value="<%= data[0].title %>">
-        <input type="text" name="describtion" placeholder="describtion" value="<%= data[0].describtion %>">
-        <input type="text" name="time" placeholder="time" value="<%= data[0].time %>">
-        <input type="number" name="rating" placeholder="rating out of 10" value="<%= data[0].rating %>">
-        <button type="submit"> Create </button>
-    </form>
+    <div class="form-container">
+        <h1>Edit Blog</h1>
+        <form action="/edit" method="POST">
+            <input type="text" name="title" placeholder="Title" value="<%= data[0].title %>">
+            <input type="text" name="describtion" placeholder="Description" value="<%= data[0].describtion %>">
+            <input type="text" name="time" placeholder="Time" value="<%= data[0].time %>">
+            <input type="number" name="rating" placeholder="Rating out of 10" value="<%= data[0].rating %>">
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
 </body>
 </html>

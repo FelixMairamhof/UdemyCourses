@@ -4,26 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BookBlog</title>
+    <link rel="stylesheet" href="style/styles.css">
 </head>
 <body>
-    <h1>Books</h1>
-    <form action="/create">
-        <button type="submit">Create new BookBlog</button>
-    </form>
-    <% data.forEach(row => { %>
-        <h1><%= row.title %></h1>
-        <h1><%= row.describtion %></h1>
-        <h1><%= row.rating %></h1>
-        <h1><%= row.time %></h1>
-        <form action="/delete" method="POST">
-            <button type="submit" name="deleteItemId" value="<%= row.id %>">Delete</button>
+    <header>
+        <h1>BookBlog</h1>
+        <form action="/create">
+            <button type="submit">Create new Blog</button>
         </form>
-        <form action="/edit" method="POST">
-            <button type="submit" name="editItemId" value="<%= row.id %>">Edit</button>
-        </form>
+    </header>
 
-        
-    <% });  %>
-    
+    <div class="container">
+        <% data.forEach(row => { %>
+            <div class="blog-item">
+                <h2><%= row.title %></h2>
+                <p><%= row.describtion %></p>
+                <p>Rating: <%= row.rating %>/10</p>
+                <p>Published on: <%= row.time %></p>
+                <form action="/delete" method="POST">
+                    <button type="submit" name="deleteItemId" value="<%= row.id %>">Delete</button>
+                </form>
+                <form action="/edit" method="POST">
+                    <button type="submit" name="editItemId" value="<%= row.id %>">Edit</button>
+                </form>
+            </div>
+        <% });  %>
+    </div>
 </body>
 </html>
