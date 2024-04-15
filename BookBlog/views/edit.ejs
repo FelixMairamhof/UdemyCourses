@@ -6,6 +6,12 @@
     <title>Edit</title>
 </head>
 <body>
-    <form action="/"></form>
+    <form action="/edit" method="POST">
+        <input type="text" name="title" placeholder="title" value="<%= data[0].title %>">
+        <input type="text" name="describtion" placeholder="describtion" value="<%= data[0].describtion %>">
+        <input type="text" name="time" placeholder="time" value="<%= data[0].time %>">
+        <input type="number" name="rating" placeholder="rating out of 10" value="<%= data[0].rating %>">
+        <button type="submit"> Create </button>
+    </form>
 </body>
 </html>
