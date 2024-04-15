@@ -10,5 +10,11 @@
     <form action="/create">
         <button type="submit">Create new BookBlog</button>
     </form>
+    <% data.forEach(row => { %>
+        <h1><%= row.title %></h1>
+        <h1><%= row.describtion %></h1>
+        <h1><%= row.author %></h1>
+    <% });  %>
+    
 </body>
 </html>

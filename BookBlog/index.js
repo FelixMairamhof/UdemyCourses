@@ -1,4 +1,4 @@
-import express from "express";
+import express, { query } from "express";
 import pg from "pg";
 import bodyParser from "body-parser";
 
@@ -16,8 +16,12 @@ db.connect();
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-app.get("/",(req,res)=>{
-    res.render("index.ejs");
+app.get("/",async(req,res)=>{
+    const data = await db.query("SELECT * FROM bookreview");
+    
+    res.render("index.ejs",{
+        data: data.rows,
+    });
 });
 
 app.get("/create",(req,res)=>{
