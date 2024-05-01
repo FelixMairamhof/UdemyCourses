@@ -13,6 +13,21 @@ Projects in this repository cover:
 - OAuth authentication.
 - Cookie and session management.
 
+## Running the App
+
+To run the apps, follow these steps:
+
+1. Change directory by running the following command in your terminal:
+`cd <path>`
+
+2. Install all necessary Node packages by running the following command in your terminal:
+`npm install`
+
+3. Running Node Server using the following command:
+`node index.js`
+
+Once these steps are completed, you should be able to access the application
+
 ## Certificate
 
 Upon course completion, a certificate was issued. View it [here](https://github.com/FelixMairamhof/WebDevCourse/files/15177071/WebDevCourse.pdf).
